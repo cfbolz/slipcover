@@ -23,8 +23,12 @@ def from_set(s: set):
 
 
 @pytest.mark.parametrize("stats", [False, True])
-def test_tracker_signal(stats):
-    from slipcover import tracker
+@pytest.mark.parametrize("python", [False, True])
+def test_tracker_signal(stats, python):
+    if python:
+        from slipcover import trackerpy as tracker
+    else:
+        from slipcover import tracker
 
     sci = sc.Slipcover(collect_stats=stats)
 
@@ -53,8 +57,13 @@ def test_tracker_signal(stats):
 
 
 @pytest.mark.parametrize("stats", [False, True])
-def test_tracker_deinstrument(stats):
-    from slipcover import tracker
+@pytest.mark.parametrize("python", [False, True])
+def test_tracker_deinstrument(stats, python):
+    if python:
+        from slipcover import trackerpy as tracker
+    else:
+        from slipcover import tracker
+
 
     sci = sc.Slipcover(collect_stats=stats)
 
